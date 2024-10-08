@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظام المحاسب القانوني الذكي</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styleindex.css">
+    <style>
+        /* CSS لتصميم الأنظمة */
+        header {
+            position: relative; /* لتسهيل وضع العناصر داخله */
+            padding: 20px;
+            background-color: #4CAF50; /* لون الخلفية */
+            color: white; /* لون النص */
+        }
+
+        /* تصميم الزر */
+        .dropbtn {
+            background-color: transparent; /* لون خلفية الزر */
+            color: white; /* لون النص */
+            border: none; /* إزالة الحدود */
+            font-size: 24px; /* حجم الخط */
+            cursor: pointer; /* تغيير شكل المؤشر */
+            position: absolute; /* وضع الزر بشكل مطلق */
+            top: 10px; /* التباعد من الأعلى */
+            right: 10px; /* التباعد من اليمين */
+        }
+
+        /* CSS لتصميم القائمة المنسدلة */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none; /* إخفاء القائمة في البداية */
+            position: absolute;
+            right: 0; /* لجعل القائمة تظهر إلى اليمين */
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>نظام المحاسب القانوني المدعوم بالذكاء الاصطناعي</h1>
+        <p>تصفح واستخدم وظائف المحاكي المحاسبي بسهولة</p>
+        <div class="dropdown">
+            <button class="dropbtn" onclick="toggleDropdown()">☰</button> <!-- زر الثلاث نقاط -->
+            <div class="dropdown-content" id="myDropdown">
+                <a href="login.html">تسجيل الدخول</a>
+                <a href="input-data.html">إدخال البيانات المالية</a>
+                <a href="view-data.html">عرض البيانات المدخلة</a>
+                <a href="results.html">عرض نتائج التحليل</a>
+                <a href="audit-request.html">رفع طلب مراجعة</a>
+                <a href="permissions.html">تحديد الصلاحيات</a>
+                <a href="sampling.html">إدارة سحب العينات</a>
+                <a href="auditor-view.html">طلبات المراجعة</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- إضافة قسم العرض الشرائحي -->
+    <div class="slideshow-container">
+        <div class="slide">
+            <img src="Hl.png" alt="الصورة الأولى" class="slideshow-image">
+        </div>
+        <div class="slide">
+            <img src="H2.png" alt="الصورة الثانية" class="slideshow-image">
+        </div>
+    </div>
+
+    <script>
+        let slideIndex = 0;
+        showSlides();
+
+        function showSlides() {
+            let slides = document.getElementsByClassName("slide");
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";  
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) {slideIndex = 1}    
+            slides[slideIndex-1].style.display = "block";  
+            setTimeout(showSlides, 5000); // تغيير الصورة كل 5 ثوانٍ
+        }
+
+        // دالة لتبديل عرض القائمة المنسدلة
+        function toggleDropdown() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
+
+        // إغلاق القائمة عند النقر خارجها
+        window.onclick = function(event) {
+            if (!event.target.matches('.dropbtn')) {
+                const dropdowns = document.getElementsByClassName("dropdown-content");
+                for (let i = 0; i < dropdowns.length; i++) {
+                    const openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* CSS لإظهار القائمة المنسدلة */
+        .dropdown-content.show {
+            display: block; /* إظهار القائمة عند النقر */
+        }
+    </style>
+</body>
+</html>

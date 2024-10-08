@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نتائج التحليل المالي</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>نتائج التحليل المالي باستخدام الذكاء الاصطناعي</h1>
+    </header>
+
+    <section id="results-view">
+        <h2>النتائج</h2>
+        <div id="analysis-results"></div>
+    </section>
+
+    <script>
+        // جلب النتائج من التخزين المحلي وعرضها
+        const results = localStorage.getItem('analysisResult');
+        if (results) {
+            const data = JSON.parse(results);
+            displayResults(data);
+        } else {
+            document.getElementById('analysis-results').innerText = 'لا توجد نتائج متاحة.';
+        }
+
+        function displayResults(data) {
+            // حسابات افتراضية (يمكنك تعديلها بناءً على البيانات الفعلية)
+            const sales = data.predicted_sales.reduce((a, b) => a + b, 0);
+            const costs = data.predicted_costs.reduce((a, b) => a + b, 0);
+            const profit = sales - costs; // صافي الربح
+            const netValue = sales - (costs * 1.1); // صافي القيمة (بافتراض تكلفة إضافية 10%)
+
+            // إعداد البيانات للعرض
+            const resultsHTML = `
+                <h3>التقارير المالية:</h3>
+                <ul>
+                    <li><strong>صافي الربح:</strong> ${profit} (العملة)</li>
+                    <li><strong>صافي القيمة:</strong> ${netValue} (العملة)</li>
+                    <li><strong>إجمالي المبيعات:</strong> ${sales} (العملة)</li>
+                    <li><strong>إجمالي التكاليف:</strong> ${costs} (العملة)</li>
+                    <li><strong>الكشف عن الاحتيال:</strong> ${data.detected_fraud ? 'نعم' : 'لا'}</li>
+                </ul>
+            `;
+
+            document.getElementById('analysis-results').innerHTML = resultsHTML;
+        }
+    </script>
+</body>
+</html>

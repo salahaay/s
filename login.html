@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>تسجيل الدخول للنظام</h1>
+    </header>
+
+    <section id="user-login">
+        <h2>تسجيل الدخول للشركة</h2>
+        <form>
+            <label for="company-type">اختر نوع الشركة:</label>
+            <select id="company-type">
+                <option value="single">شركة شخص واحد</option>
+                <option value="limited">شركة ذات مسؤولية محدودة</option>
+                <option value="joint-stock">شركة مساهمة</option>
+            </select>
+
+            <label for="username">اسم المستخدم:</label>
+            <input type="text" id="username" placeholder="أدخل اسم المستخدم">
+
+            <label for="password">كلمة المرور:</label>
+            <input type="password" id="password" placeholder="أدخل كلمة المرور">
+
+            <button type="button" onclick="loginUser()">دخول</button>
+        </form>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>

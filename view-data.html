@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عرض البيانات المالية</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styleviw.css">
+
+</head>
+<body>
+    <header>
+        <h1>عرض البيانات المالية</h1>
+        <p>قم بمراجعة البيانات المدخلة ثم ابدأ التحليل</p>
+    </header>
+
+    <section id="data-view">
+        <h2>البيانات المدخلة</h2>
+        <div class="data-container">
+            <pre id="display-data"></pre>
+        </div>
+        <button type="button" class="analyze-button" onclick="analyzeData()">تحليل البيانات</button>
+    </section>
+
+    <script>
+        // جلب البيانات المدخلة من التخزين المحلي
+        document.getElementById('display-data').innerText = localStorage.getItem('financialData') || 'لا توجد بيانات مدخلة بعد.';
+
+        function analyzeData() {
+            const data = localStorage.getItem('financialData');
+            fetch('http://localhost:5000/analyze', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ financialData: data })
+            })
+            .then(response => response.json())
+            .then(result => {
+                localStorage.setItem('analysisResult', JSON.stringify(result));
+                window.location.href = 'results.html'; // الانتقال إلى صفحة النتائج
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+</body>
+</html>

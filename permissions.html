@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تحديد الصلاحيات</title>
+    <link rel="stylesheet" href="style.css">
+    
+
+ 
+</head>
+<body>
+    <header>
+        <h1>تحديد الصلاحيات</h1>
+    </header>
+
+    <section id="permissions">
+        <h2>تحديد صلاحيات الموظفين</h2>
+        <form>
+            <div>
+                <input type="checkbox" id="purchase-access">
+                <label for="purchase-access">المشتريات</label>
+            </div>
+            <div>
+                <input type="checkbox" id="payment-access">
+                <label for="payment-access">المدفوعات</label>
+            </div>
+            <div>
+                <input type="checkbox" id="report-access">
+                <label for="report-access">التقارير</label>
+            </div>
+            <div>
+                <input type="checkbox" id="invoices-access">
+                <label for="invoices-access">الفواتير</label>
+            </div>
+            <div>
+                <input type="checkbox" id="tax-access">
+                <label for="tax-access">إدارة الضرائب</label>
+            </div>
+            <div>
+                <input type="checkbox" id="assets-access">
+                <label for="assets-access">إدارة الأصول</label>
+            </div>
+            <div>
+                <input type="checkbox" id="audit-access">
+                <label for="audit-access">التدقيق المالي</label>
+            </div>
+            <div>
+                <input type="checkbox" id="budget-access">
+                <label for="budget-access">إدارة الميزانية</label>
+            </div>
+            <div>
+                <input type="checkbox" id="financial-statements-access">
+                <label for="financial-statements-access">القوائم المالية</label>
+            </div>
+            <div>
+                <input type="checkbox" id="legal-compliance-access">
+                <label for="legal-compliance-access">الامتثال القانوني</label>
+            </div>
+            <div>
+                <input type="checkbox" id="payroll-access">
+                <label for="payroll-access">إدارة الرواتب</label>
+            </div>
+            <button type="button" onclick="setPermissions()">حفظ الصلاحيات</button>
+        </form>
+    </section>
+
+    <script>
+        function setPermissions() {
+            const permissions = [];
+            if (document.getElementById('purchase-access').checked) permissions.push('المشتريات');
+            if (document.getElementById('payment-access').checked) permissions.push('المدفوعات');
+            if (document.getElementById('report-access').checked) permissions.push('التقارير');
+            if (document.getElementById('invoices-access').checked) permissions.push('الفواتير');
+            if (document.getElementById('tax-access').checked) permissions.push('إدارة الضرائب');
+            if (document.getElementById('assets-access').checked) permissions.push('إدارة الأصول');
+            if (document.getElementById('audit-access').checked) permissions.push('التدقيق المالي');
+            if (document.getElementById('budget-access').checked) permissions.push('إدارة الميزانية');
+            if (document.getElementById('financial-statements-access').checked) permissions.push('القوائم المالية');
+            if (document.getElementById('legal-compliance-access').checked) permissions.push('الامتثال القانوني');
+            if (document.getElementById('payroll-access').checked) permissions.push('إدارة الرواتب');
+
+            alert(`تم تحديد الصلاحيات التالية: ${permissions.join(', ')}`);
+        }
+    </script>
+</body>
+</html>

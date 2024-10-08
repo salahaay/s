@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>رفع طلب مراجعة</title>
+    <link rel="stylesheet" href="styleaudit-request.css">
+</head>
+<body>
+    <header>
+        <h1>رفع طلب مراجعة</h1>
+    </header>
+
+    <section id="audit-request">
+        <h2>تفاصيل طلب المراجعة</h2>
+        <form>
+            <label for="request-details">تفاصيل الطلب:</label>
+            <textarea id="request-details" rows="5" placeholder="أدخل تفاصيل الطلب"></textarea>
+            
+            <label for="auditor">اختر المراجع:</label>
+            <select id="auditor">
+                <option value="auditor1">مراجع 1</option>
+                <option value="auditor2">مراجع 2</option>
+            </select>
+
+            <button type="button" onclick="submitAuditRequest()">رفع الطلب</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>جميع الحقوق محفوظة © 2024</p>
+    </footer>
+
+    <script>
+        function submitAuditRequest() {
+            const details = document.getElementById('request-details').value;
+            const auditor = document.getElementById('auditor').value;
+
+            if (details) {
+                // الحصول على الطلبات السابقة من LocalStorage
+                let auditRequests = JSON.parse(localStorage.getItem('auditRequests')) || [];
+
+                // إضافة الطلب الجديد
+                auditRequests.push({ details, auditor });
+
+                // تخزين الطلبات في LocalStorage
+                localStorage.setItem('auditRequests', JSON.stringify(auditRequests));
+
+                alert(`تم رفع الطلب للمراجع ${auditor} بنجاح.`);
+                // إعادة توجيه المستخدم إلى صفحة عرض الطلبات
+                window.location.href = 'auditor-view.html'; 
+            } else {
+                alert('يرجى إدخال تفاصيل الطلب.');
+            }
+        }
+    </script>
+</body>
+</html>

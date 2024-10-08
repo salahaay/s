@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إدارة سحب العينات</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>إدارة سحب العينات</h1>
+    </header>
+
+    <section id="sampling-requirements">
+        <h2>اختيار الأقسام لسحب العينات</h2>
+        <form>
+            <label for="departments">اختر الأقسام:</label>
+            <select id="departments" multiple>
+                <option value="finance">القسم المالي</option>
+                <option value="hr">قسم الموارد البشرية</option>
+                <option value="sales">قسم المبيعات</option>
+            </select>
+
+            <label for="legal-requirements">المتطلبات النظامية:</label>
+            <textarea id="legal-requirements" rows="4" placeholder="أدخل المتطلبات النظامية"></textarea>
+
+            <button type="button" onclick="submitSampling()">حفظ</button>
+        </form>
+    </section>
+
+    <script>
+        function submitSampling() {
+            const departments = Array.from(document.getElementById('departments').selectedOptions).map(opt => opt.value);
+            const requirements = document.getElementById('legal-requirements').value;
+
+            if (departments.length && requirements) {
+                alert(`تم حفظ الأقسام: ${departments.join(', ')} مع المتطلبات النظامية.`);
+            } else {
+                alert('يرجى اختيار الأقسام وإدخال المتطلبات.');
+            }
+        }
+    </script>
+</body>
+</html>

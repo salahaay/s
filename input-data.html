@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إدخال البيانات المالية</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>إدخال البيانات المالية</h1>
+    </header>
+
+    <section id="data-entry">
+        <h2>أدخل البيانات المالية</h2>
+        <form id="data-form">
+            <label for="financial-data">أدخل البيانات (قائمة الدخل):</label>
+            <textarea id="financial-data" rows="5" placeholder="مثال: المبيعات، التكاليف، الربح"></textarea>
+            
+            <label for="file-upload">أو قم برفع ملف Excel أو Word:</label>
+            <input type="file" id="file-upload" accept=".xlsx,.xls,.doc,.docx" />
+            
+            <button type="button" onclick="submitData()">إدخال البيانات</button>
+        </form>
+    </section>
+
+    <script>
+        function submitData() {
+            const textData = document.getElementById('financial-data').value;
+            const fileInput = document.getElementById('file-upload');
+            const file = fileInput.files[0]; // الحصول على الملف المرفوع
+            
+            // حفظ البيانات النصية في التخزين المحلي
+            localStorage.setItem('financialData', textData);
+            
+            // معالجة الملف المرفوع
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const fileContent = event.target.result;
+                    // هنا يمكنك معالجة محتوى الملف حسب الحاجة
+                    console.log("محتوى الملف:", fileContent);
+                    alert('تم رفع الملف بنجاح. يمكنك الآن الانتقال إلى عرض البيانات.');
+                    window.location.href = 'view-data.html'; // الانتقال إلى صفحة عرض البيانات
+                };
+                // قراءة محتوى الملف كـ نص
+                reader.readAsBinaryString(file); 
+            } else {
+                alert('تم إدخال البيانات بنجاح. يمكنك الآن الانتقال إلى عرض البيانات.');
+                window.location.href = 'view-data.html'; // الانتقال إلى صفحة عرض البيانات
+            }
+        }
+    </script>
+</body>
+</html>

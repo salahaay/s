@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>استعراض طلبات المراجعة</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>استعراض طلبات المراجعة</h1>
+    </header>
+
+    <section id="external-auditor">
+        <h2>الطلبات الواردة</h2>
+        <div id="audit-requests">
+            <p id="no-requests">لا توجد طلبات مراجعة بعد.</p>
+        </div>
+    </section>
+
+    <script>
+        function displayAuditRequests() {
+            // الحصول على الطلبات من LocalStorage
+            let auditRequests = JSON.parse(localStorage.getItem('auditRequests')) || [];
+            
+            const requestsContainer = document.getElementById('audit-requests');
+            const noRequestsMessage = document.getElementById('no-requests');
+            
+            // التحقق من وجود طلبات
+            if (auditRequests.length > 0) {
+                noRequestsMessage.style.display = 'none'; // إخفاء رسالة "لا توجد طلبات"
+
+                // عرض الطلبات
+                auditRequests.forEach((request, index) => {
+                    const requestDiv = document.createElement('div');
+                    requestDiv.classList.add('request-item');
+                    requestDiv.innerHTML = `
+                        <p><strong>طلب ${index + 1}:</strong></p>
+                        <p>التفاصيل: ${request.details}</p>
+                        <p>المراجع: ${request.auditor}</p>
+                    `;
+                    requestsContainer.appendChild(requestDiv);
+                });
+            } else {
+                noRequestsMessage.style.display = 'block'; // إظهار رسالة "لا توجد طلبات"
+            }
+        }
+
+        // عرض الطلبات عند تحميل الصفحة
+        window.onload = displayAuditRequests;
+    </script>
+</body>
+</html>
